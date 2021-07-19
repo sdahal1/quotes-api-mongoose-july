@@ -38,3 +38,50 @@ module.exports.findOneQuote = (req, res)=>{
                 )
         })
 }
+
+
+module.exports.updateQuote = (req, res)=>{
+   
+    Quote.findOneAndUpdate(
+        {_id: req.params.quoteId},  //req.params.quoteId will represent the id of the quote that I want to update
+        req.body,
+        //req.body will represent the information i want to update the quote with 
+        {new:true, runValidators:true}
+        )
+        .then(updatedQuote => res.json({results: updatedQuote}))
+        .catch(err => {
+            res.json(
+                {message: "something went wrong updating one quote", error: err}
+                )
+        })
+}
+
+
+module.exports.deleteQuote = (req, res)=>{
+    Quote.deleteOne({_id: req.params.quoteId})
+        .then(deletedQuote=> res.json({results: deletedQuote}))
+        .catch(err => {
+            res.json(
+                {message: "something went wrong deleting one quote", error: err}
+                )
+        })
+}
+
+
+module.exports.findRandomQuote =(req,res)=>{
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+    Quote.find()
+        .then(allquotes => {
+            //find a random index number from 0 to the length of array-1
+            let randomIndexNumber = getRandomInt(allquotes.length)
+            res.json({results: allquotes[randomIndexNumber]})
+
+        })
+        .catch(err => {
+            res.json(
+                {message: "something went wrong getting all the quotes", error: err}
+                )
+        })
+}
