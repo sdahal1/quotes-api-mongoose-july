@@ -20,14 +20,14 @@ const AllQuotes = () => {
             <h1>All the quotes component</h1>
 
             {allQuotes.map(q=>{
-                return <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{q.author}</h4>
-                    <p class="card-text">
+                return <div className="card">
+                <div className="card-body">
+                    <h4 className="card-title">{q.author}</h4>
+                    <p className="card-text">
                     {q.content}
                     </p>
                     <p>Quoted on this day:{q.quotedOn}</p>
-                    <a href="#!" class="btn btn-primary">Go somewhere</a>
+                    <a href="#!" className="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
             })}
