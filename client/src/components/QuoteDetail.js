@@ -41,6 +41,7 @@ const QuoteDetail = (props) => {
             <p>Quote Author: {quoteInfo.author}</p>
             <p>Quote Content: {quoteInfo.content}</p>
             <p>Quoted on this date: {quoteInfo.quotedOn}</p>
+            <p>Is it motivational? {quoteInfo.isMotivational? "Yes": "No"}</p>
             <button onClick= {deleteQuote} className="btn btn-danger">Delete</button>
 
         </div>

@@ -18,6 +18,17 @@ const QuoteSchema = new mongoose.Schema({
     //this one is options b/c there is not required validation key
     quotedOn: {
         type: Date
+    },
+
+    //for a checkbox field
+    isMotivational:{
+        type: Boolean
+    },
+
+    popularityLevel:{
+        type:Number,
+        max:[10, "Quote can't be more fire that 10"],
+        min:[1, "Quote cant be that bad that its less than 1"]
     }
 
 }, {timestamps:true} )

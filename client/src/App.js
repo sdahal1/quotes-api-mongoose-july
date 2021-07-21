@@ -5,6 +5,7 @@ import {Link, Router} from '@reach/router';
 import Create from './components/Create';
 import QuoteDetail from './components/QuoteDetail';
 import Edit from './components/Edit';
+import FilteredQuotes from './components/FilteredQuotes'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <AllQuotes path= "/"></AllQuotes>
         <QuoteDetail path= "/quotes/info/:id"></QuoteDetail>
         <Edit path="/quotes/edit/:id"></Edit>
+        <FilteredQuotes path= "/filtered"></FilteredQuotes>
       </Router>
     </div>
   );

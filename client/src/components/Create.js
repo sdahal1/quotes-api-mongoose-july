@@ -6,7 +6,8 @@ const Create = () => {
     const [formInfo, setFormInfo] = useState({
         content:"",
         author:"",
-        quotedOn:""
+        quotedOn:"",
+        isMotivational: false
     })
 
     const [formErrors, setFormErrors] = useState({})
@@ -14,12 +15,21 @@ const Create = () => {
 
     const changeHandler = (e)=>{
         console.log("changing some input now!!!!")
+        console.log(e.target.type)
         console.log(e.target.name)
         console.log(e.target.value)
-        setFormInfo({
-            ...formInfo,
-            [e.target.name]:e.target.value
-        })
+        if(e.target.type == "checkbox"){
+            setFormInfo({
+                ...formInfo,
+                [e.target.name]:e.target.checked
+            })
+        }else{
+            setFormInfo({
+                ...formInfo,
+                [e.target.name]:e.target.value
+            })
+
+        }
     }
 
 
@@ -32,6 +42,7 @@ const Create = () => {
                 console.log("***RESPONSEEEEE INBETWEEN***")
                 if(res.data.results){
                     navigate("/")
+    
                 }else{
                     console.log("OOPSIEEE you gota fill this out properly!")
                     setFormErrors(res.data.error.errors)
@@ -59,6 +70,10 @@ const Create = () => {
               <div className="form-group">
                   <label>Quoted on:</label>
                   <input  onChange= {changeHandler} type="date" name="quotedOn" id="" className="form-control" />
+              </div>
+              <div className="form-group">
+                  <label>Is Motivational?</label>
+                  <input onChange = {changeHandler} type="checkbox" name="isMotivational" id="" />
               </div>
               <input type="submit" value="Upload Quote!" />
           </form>

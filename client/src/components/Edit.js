@@ -8,7 +8,8 @@ const Edit = (props) => {
     const [quoteInfo, setQuoteInfo]= useState({
         content:"",
         author:"",
-        quotedOn:""
+        quotedOn:"",
+        isMotivational:false
     })
 
     useEffect(()=>{
@@ -25,10 +26,18 @@ const Edit = (props) => {
 
     const changehandler = (e)=>{
         console.log("changing something!")
-        setQuoteInfo({
-            ...quoteInfo,
-            [e.target.name]:e.target.value
-        })
+        if(e.target.type == "checkbox"){
+            setQuoteInfo({
+                ...quoteInfo,
+                [e.target.name]:e.target.checked
+            })
+        }else{
+            setQuoteInfo({
+                ...quoteInfo,
+                [e.target.name]:e.target.value
+            })
+
+        }
 
     }
 
@@ -64,6 +73,10 @@ const Edit = (props) => {
               <div className="form-group">
                   <label>Quoted on:</label>
                   <input onChange= {changehandler} type="date" name="quotedOn" id="" className="form-control" value={moment(quoteInfo.quotedOn).format('YYYY-MM-DD')} />
+              </div>
+              <div className="form-group">
+                  <label>Is Motivational?</label>
+                  <input onChange = {changehandler} checked = {quoteInfo.isMotivational}  type="checkbox" name="isMotivational" id="" />
               </div>
               <input type="submit" value="Update Quote!" />
           </form>
