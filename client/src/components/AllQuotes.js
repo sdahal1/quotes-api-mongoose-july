@@ -36,8 +36,8 @@ const AllQuotes = () => {
         <div>
             <h1>All the quotes component</h1>
 
-            {allQuotes.map(q=>{
-                return <div className="card">
+            {allQuotes.map((q,i)=>{
+                return <div key={i} className="card">
                 <div className="card-body">
                     <h4 className="card-title">{q.author}</h4>
                     <p className="card-text">
@@ -46,6 +46,8 @@ const AllQuotes = () => {
                     {/* <p>Quoted on this day:{q.quotedOn}</p> */}
                     
                     <Link to= {`/quotes/info/${q._id}`} className="btn btn-primary m-2">More Info</Link>
+                    <Link to= {`/quotes/edit/${q._id}`} className="btn btn-info m-2">Edit</Link>
+
                     <button onClick={(e)=>deleteQuote(e, q._id)} className="btn btn-danger">Delete</button>
                 </div>
             </div>
